@@ -61,3 +61,11 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+
+{{/*
+Create the names of the namespace to use
+*/}}
+{{- define "codefresh-runner.namespace" -}}
+{{ default .Release.Namespace .Values.env.codefreshKubeNamespace }}
+{{- end -}}

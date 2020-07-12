@@ -67,5 +67,5 @@ affinity: {}
 
 env:
   codefreshToken: 
-  codefreshKubeNamespace: "default"
   codefreshAgentName: "defaultAgent"
+  #codefreshKubeNamespace: "default"

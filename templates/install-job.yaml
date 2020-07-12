@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: codefresh-runner-installation
+  namespace: {{ include "codefresh-runner.namespace" . }}
   annotations:
     "helm.sh/hook": post-install
     "helm.sh/hook-delete-policy": hook-succeeded
@@ -10,14 +11,14 @@ spec:
     spec:
       serviceAccountName: {{ include "codefresh-runner.serviceAccountName" . }}
       containers:
-      - name: codefresh
+      - name: codefresh     
         image: {{ .Values.image.repository }}
         command: ["codefresh", "runner", "init", "--token", "$(CODEFRESH_TOKEN)", "--exec-demo-pipeline", "false", "--set-default-runtime", "true", "--name", "$(CF_AGENT_NAME)"]
         env:
           - name: CODEFRESH_TOKEN
             value: {{ .Values.env.codefreshToken }}
           - name: CF_ARG_KUBE_NAMESPACE
-            value: {{ .Values.env.codefreshKubeNamespace }}
+            value: {{ include "codefresh-runner.namespace" . }}
           - name: CF_ARG_KUBE_CONTEXT_NAME
             value: inClusterContext
           - name: CF_AGENT_NAME

@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: delete-script
+  namespace: {{ include "codefresh-runner.namespace" . }}
 data:
   delete.sh: |
    #!/bin/bash

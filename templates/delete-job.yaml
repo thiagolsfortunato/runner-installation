@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: codefresh-runner-deletion
+  namespace: {{ include "codefresh-runner.namespace" . }}
   annotations:
     "helm.sh/hook": pre-delete
     "helm.sh/hook-delete-policy": hook-succeeded
@@ -18,7 +19,7 @@ spec:
           - name: CODEFRESH_TOKEN
             value: {{ .Values.env.codefreshToken }}
           - name: CF_ARG_KUBE_NAMESPACE
-            value: {{ .Values.env.codefreshKubeNamespace }}
+            value: {{ include "codefresh-runner.namespace" . }}
           - name: CF_ARG_KUBE_CONTEXT_NAME
             value: inClusterContext
           - name: CF_AGENT_NAME
