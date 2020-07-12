@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: codefresh-runner-deletion
+  annotations:
+    "helm.sh/hook": pre-delete
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: codefresh
+        image: {{ .Values.image.repository }}
+        #command: ["codefresh", "runner", "delete", "--force"]
+        command: ["/script/delete.sh"]
+        env:
+          - name: CODEFRESH_TOKEN
+            value: {{ .Values.env.codefreshToken }}
+          - name: CF_ARG_KUBE_NAMESPACE
+            value: {{ .Values.env.codefreshKubeNamespace }}
+          - name: CF_ARG_KUBE_CONTEXT_NAME
+            value: inClusterContext
+        volumeMounts:
+        - name: delete-script
+          mountPath: /script/delete.sh
+          subPath: delete.sh
+      volumes:
+        - name: delete-script
+          configMap:
+            name: delete-script
+            defaultMode: 0777   
+      restartPolicy: Never
+  backoffLimit: 4

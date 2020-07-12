@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: codefresh-runner-upgrade
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    #"helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: codefresh
+        image: {{ .Values.image.repository }}
+        #command: ["codefresh", "runner", "delete", "--force"]
+        command: ["/script/upgrade.sh"]
+        env:
+          - name: CODEFRESH_TOKEN
+            value: {{ .Values.env.codefreshToken }}
+          - name: CF_ARG_KUBE_NAMESPACE
+            value: {{ .Values.env.codefreshKubeNamespace }}
+          - name: CF_ARG_KUBE_CONTEXT_NAME
+            value: inClusterContext
+        volumeMounts:
+        - name: upgrade-script
+          mountPath: /script/upgrade.sh
+          subPath: upgrade.sh
+      volumes:
+        - name: upgrade-script
+          configMap:
+            name: upgrade-script
+            defaultMode: 0777   
+      restartPolicy: Never
+  backoffLimit: 4
