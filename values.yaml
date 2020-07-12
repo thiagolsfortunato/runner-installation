@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: codefresh/cli
+  repository: gcr.io/savvy-badge-103912/sharonv/codefresh/cli
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -66,6 +66,7 @@ tolerations: []
 affinity: {}
 
 env:
-  codefreshToken: 
+  codefreshToken: <TOKEN_ID_YOU_GENERATED>
   codefreshAgentName: "defaultAgent"
+  codefreshURL: "https://g.codefresh.io"
   #codefreshKubeNamespace: "default"

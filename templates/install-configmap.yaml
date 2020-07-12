@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: upgrade-script
+  name: install-script
   namespace: {{ include "codefresh-runner.namespace" . }}
 data:
-  upgrade.sh: |
+  install.sh: |
    #!/bin/bash
-   echo "Start Upgrade"
+   echo "Start installation"
 
    echo codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL
    codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL
-   echo codefresh runner upgrade  --agent-name $CF_AGENT_NAME --kube-context-name $CF_ARG_KUBE_CONTEXT_NAME
-   codefresh runner upgrade  --agent-name $CF_AGENT_NAME --kube-context-name $CF_ARG_KUBE_CONTEXT_NAME
+   echo codefresh runner init --token $CODEFRESH_TOKEN --exec-demo-pipeline false --set-default-runtime true --name CF_AGENT_NAME
+   codefresh runner init --token $CODEFRESH_TOKEN --exec-demo-pipeline false --set-default-runtime true --name CF_AGENT_NAME
 
-   echo "Finish"
+   echo "finish"

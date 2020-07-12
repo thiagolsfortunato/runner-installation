@@ -13,7 +13,6 @@ spec:
       containers:
       - name: codefresh
         image: {{ .Values.image.repository }}
-        #command: ["codefresh", "runner", "delete", "--force"]
         command: ["/script/delete.sh"]
         env:
           - name: CODEFRESH_TOKEN
@@ -24,6 +23,8 @@ spec:
             value: inClusterContext
           - name: CF_AGENT_NAME
             value: {{ .Values.env.codefreshAgentName }}
+          - name: CF_URL
+            value: {{ .Values.env.codefreshURL }}
         volumeMounts:
         - name: delete-script
           mountPath: /script/delete.sh

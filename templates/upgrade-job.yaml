@@ -24,6 +24,8 @@ spec:
             value: inClusterContext
           - name: CF_AGENT_NAME
             value: {{ .Values.env.codefreshAgentName }}
+          - name: CF_URL
+            value: {{ .Values.env.codefreshURL }}
         volumeMounts:
         - name: upgrade-script
           mountPath: /script/upgrade.sh
