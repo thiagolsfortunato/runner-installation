@@ -13,7 +13,6 @@ spec:
       containers:
       - name: codefresh
         image: {{ .Values.image.repository }}
-        #command: ["codefresh", "runner", "delete", "--force"]
         command: ["/script/upgrade.sh"]
         env:
           - name: CODEFRESH_TOKEN
