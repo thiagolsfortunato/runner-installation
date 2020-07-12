@@ -5,11 +5,11 @@ metadata:
 data:
   delete.sh: |
    #!/bin/bash
-   echo "Start installation"
+   echo "Start deletation"
 
    echo codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE
    codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE
-   echo codefresh runner delete --force --name inClusterContext_default_5
-   codefresh runner delete --force --name inClusterContext_default_5
+   echo codefresh runner delete --force --name $CF_AGENT_NAME
+   codefresh runner delete --force --name $CF_AGENT_NAME
 
    echo "finish"

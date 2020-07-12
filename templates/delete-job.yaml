@@ -8,6 +8,7 @@ metadata:
 spec:
   template:
     spec:
+      serviceAccountName: {{ include "codefresh-runner.serviceAccountName" . }}
       containers:
       - name: codefresh
         image: {{ .Values.image.repository }}
@@ -20,6 +21,8 @@ spec:
             value: {{ .Values.env.codefreshKubeNamespace }}
           - name: CF_ARG_KUBE_CONTEXT_NAME
             value: inClusterContext
+          - name: CF_AGENT_NAME
+            value: {{ .Values.env.codefreshAgentName }}
         volumeMounts:
         - name: delete-script
           mountPath: /script/delete.sh
