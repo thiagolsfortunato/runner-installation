@@ -7,7 +7,7 @@ For additional information regarding "Codefresh Runner" look here: [https://code
 This helm chart support both Helm2 and Helm3.
 
 ## Prerequisite
-1. If you are working on air-gapped environment (without internet access), make sure to push the image "codefresh/cli" into your local registry before proceeding with the installation.
+1. If you are working on air-gapped environment (without internet access), make sure to push the image "codefresh/cli" into your local registry before proceeding with the installation, And set `image.repository` to your local repository.
 
 2. Before you start to install this helm chart make sure you have a Codefresh API token, follow this doc for HOW-TO generate it: [https://codefresh.io/docs/docs/integrations/google-marketplace/#step-0---create-a-codefresh-api-key](https://codefresh.io/docs/docs/integrations/google-marketplace/#step-0---create-a-codefresh-api-key)
 3. Clone this repo and pack the helm chart by executing:
