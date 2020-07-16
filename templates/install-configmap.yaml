@@ -7,10 +7,11 @@ data:
   install.sh: |
    #!/bin/bash
    echo "Start installation"
+   codefresh version
 
    echo codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL
    codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL
-   echo codefresh runner init --token $CODEFRESH_TOKEN --exec-demo-pipeline false --set-default-runtime true --name CF_AGENT_NAME
-   codefresh runner init --token $CODEFRESH_TOKEN --exec-demo-pipeline false --set-default-runtime true --name CF_AGENT_NAME
+   echo codefresh runner init --token $CODEFRESH_TOKEN --exec-demo-pipeline false --set-default-runtime true --name $CF_AGENT_NAME
+   codefresh runner init --token $CODEFRESH_TOKEN --exec-demo-pipeline false --set-default-runtime true --name $CF_AGENT_NAME
 
    echo "finish"

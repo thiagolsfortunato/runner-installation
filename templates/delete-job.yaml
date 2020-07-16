@@ -13,6 +13,7 @@ spec:
       containers:
       - name: codefresh
         image: {{ .Values.image.repository }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/script/delete.sh"]
         env:
           - name: CODEFRESH_TOKEN
@@ -25,6 +26,8 @@ spec:
             value: {{ .Values.env.codefreshAgentName }}
           - name: CF_URL
             value: {{ .Values.env.codefreshURL }}
+          - name: CF_ARG_docker-registry
+            value: {{ .Values.env.dockerRegistry }}
         volumeMounts:
         - name: delete-script
           mountPath: /script/delete.sh

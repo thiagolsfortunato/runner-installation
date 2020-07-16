@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: gcr.io/savvy-badge-103912/sharonv/codefresh/cli
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
@@ -66,7 +66,10 @@ tolerations: []
 affinity: {}
 
 env:
-  codefreshToken: <TOKEN_ID_YOU_GENERATED>
+  codefreshToken: <YOUR_TOKEN>
   codefreshAgentName: "defaultAgent"
+
+  # Mandatory modfication for on-prem installation
   codefreshURL: "https://g.codefresh.io"
+  dockerRegistry: "codefresh"
   #codefreshKubeNamespace: "default"
