@@ -11,7 +11,7 @@ data:
 
    echo codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL
    codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL
-   echo codefresh runner upgrade  --agent-name $CF_AGENT_NAME --kube-context-name $CF_ARG_KUBE_CONTEXT_NAME
-   codefresh runner upgrade  --agent-name $CF_AGENT_NAME --kube-context-name $CF_ARG_KUBE_CONTEXT_NAME
+   echo codefresh runner upgrade  --agent-name $CF_AGENT_NAME --kube-context-name $CF_ARG_KUBE_CONTEXT_NAME --url $CF_URL
+   codefresh runner upgrade  --agent-name $CF_AGENT_NAME --kube-context-name $CF_ARG_KUBE_CONTEXT_NAME --url $CF_URL
 
    echo "Finish"
