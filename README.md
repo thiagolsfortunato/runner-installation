@@ -14,12 +14,10 @@ This helm chart support both Helm2 and Helm3.
 
 `git clone https://github.com/codefresh-io/runner-installtion.git`
 
-`helm package runner-installation`
-
 ## Installation
 1. Edit the file `values.yaml`. VERY IMPORTENT!!!
 
-`helm install --namespace <NAMESPACE> <RELEASE-NAME> runner-installation-0.1.0.tgz`
+`helm install --namespace <NAMESPACE> --timeout 1500 <RELEASE-NAME> runner-installtion`
 
 ## values.yaml parameters - all fields are MANDATORY
 |                      |Description                                 |Default                 |
