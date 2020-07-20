@@ -38,5 +38,11 @@ spec:
             name: install-script
             defaultMode: 0777               
       restartPolicy: Never
+      {{- if .Values.image.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range $sec := .Values.image.imagePullSecrets }}
+        - name: {{$sec | quote }}
+      {{- end }}
+      {{- end }}
 
   backoffLimit: 4
