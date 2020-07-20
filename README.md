@@ -28,6 +28,7 @@ This helm chart support both Helm2 and Helm3.
 |env.codefreshAgentName|"Codefresh agent name."                     |"defaultAgent"          |
 |env.codefreshURL      |"Codefresh custom url, for on-prem install".|"https://g.codefresh.io"|
 |image.repository      |"The codefresh-cli image path".             |codefresh/cli           |
+|image.imagePullSecrets|"list of kubernetes pull images secrets     | []  (empty list)       |
 
 
 
