@@ -15,7 +15,7 @@ This helm chart support both Helm2 and Helm3.
 `git clone https://github.com/codefresh-io/runner-installtion.git`
 
 ## Installation
-1. Edit the file `values.yaml`. VERY IMPORTENT!!!
+1. Edit the file `values.yaml`. VERY IMPORTANT!!!
 
 `helm install --namespace <NAMESPACE> --timeout 1500 <RELEASE-NAME> runner-installtion`
 

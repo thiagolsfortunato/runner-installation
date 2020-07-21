@@ -16,6 +16,12 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/script/upgrade.sh"]
         env:
+          {{- if .Values.env.proxy }}
+          {{- range $key, $value := .Values.env.proxy }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+          {{- end}}
+          {{- end}}
           - name: CODEFRESH_TOKEN
             value: {{ .Values.env.codefreshToken }}
           - name: CF_ARG_KUBE_NAMESPACE
