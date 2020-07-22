@@ -6,7 +6,7 @@ metadata:
 data:
   delete.sh: |
    #!/bin/bash
-   echo "Start deletation"
+   echo "Start deletion"
    codefresh version
 
    echo codefresh auth create-context $CF_ARG_KUBE_CONTEXT_NAME --api-key $CODEFRESH_TOKEN --kube-namespace $CF_ARG_KUBE_NAMESPACE --url $CF_URL

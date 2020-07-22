@@ -73,3 +73,9 @@ env:
   codefreshURL: "https://g.codefresh.io"
   dockerRegistry: "codefresh"
   #codefreshKubeNamespace: "default"
+
+  ## proxy vars
+  # proxy:
+  #   HTTPS_PROXY: http://your_proxy:3128
+  #   HTTP_PROXY: http://your_proxy:3128
+  #   NO_PROXY: 127.0.0.1,localhost,kubernetes.default.svc,.codefresh.svc,100.64.0.1,169.254.169.254,cf-builder,cf-cfapi,cf-payments,cf-cfui,cf-chartmuseum,cf-charts-manager,cf-cluster-providers,cf-consul,cf-consul-ui,cf-context-manager,cf-cronus,cf-helm-repo-manager,cf-hermes,cf-ingress-controller,cf-ingress-http-backend,cf-kube-integration,cf-mongodb,cf-nats,cf-nomios,cf-pipeline-manager,cf-postgresql,cf-rabbitmq,cf-redis,cf-registry,cf-runner,cf-runtime-environment-manager,cf-store,cf-tasker-kubernetes
