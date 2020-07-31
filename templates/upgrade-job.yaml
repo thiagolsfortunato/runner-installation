@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: codefresh-runner-upgrade
+  name: {{ .Release.Name }}-upgrade
   namespace: {{ include "codefresh-runner.namespace" . }}
   annotations:
     "helm.sh/hook": pre-upgrade
-    #"helm.sh/hook-delete-policy": hook-succeeded
+    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
     spec:
@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: upgrade-script
           configMap:
-            name: upgrade-script
+            name: {{ .Release.Name }}-upgrade-script
             defaultMode: 0777   
       restartPolicy: Never
       {{- if .Values.image.imagePullSecrets }}

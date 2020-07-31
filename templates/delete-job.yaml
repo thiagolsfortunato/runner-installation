@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: codefresh-runner-deletion
+  name: {{ .Release.Name }}-deletion
   namespace: {{ include "codefresh-runner.namespace" . }}
   annotations:
     "helm.sh/hook": pre-delete
@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: delete-script
           configMap:
-            name: delete-script
+            name: {{ .Release.Name }}-delete-script
             defaultMode: 0777   
       restartPolicy: Never
       {{- if .Values.image.imagePullSecrets }}

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: upgrade-script
+  name: {{ .Release.Name }}-upgrade-script
   namespace: {{ include "codefresh-runner.namespace" . }}
 data:
   upgrade.sh: |

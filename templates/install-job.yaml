@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: codefresh-runner-installation
+  name: {{ .Release.Name }}-installation
   namespace: {{ include "codefresh-runner.namespace" . }}
   annotations:
     "helm.sh/hook": post-install
@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: install-script
           configMap:
-            name: install-script
+            name: {{ .Release.Name }}-install-script
             defaultMode: 0777               
       restartPolicy: Never
       {{- if .Values.image.imagePullSecrets }}

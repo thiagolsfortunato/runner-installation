@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: delete-script
+  name: {{ .Release.Name }}-delete-script
   namespace: {{ include "codefresh-runner.namespace" . }}
 data:
   delete.sh: |
