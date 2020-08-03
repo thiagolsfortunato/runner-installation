@@ -12,7 +12,7 @@ This helm chart support both Helm2 and Helm3.
 2. Before you start to install this helm chart make sure you have a Codefresh API token, follow this doc for HOW-TO generate it: [https://codefresh.io/docs/docs/integrations/google-marketplace/#step-0---create-a-codefresh-api-key](https://codefresh.io/docs/docs/integrations/google-marketplace/#step-0---create-a-codefresh-api-key)
 3. Clone this repo and pack the helm chart by executing:
 
-`git clone https://github.com/codefresh-io/runner-installtion.git`
+`git clone https://github.com/codefresh-io/runner-installation.git`
 
 ## Installation
 1. Edit the file `values.yaml`. VERY IMPORTANT!!!
