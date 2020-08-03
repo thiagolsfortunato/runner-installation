@@ -17,7 +17,9 @@ This helm chart support both Helm2 and Helm3.
 ## Installation
 1. Edit the file `values.yaml`. VERY IMPORTANT!!!
 
-`helm install --namespace <NAMESPACE> --timeout 1500 <RELEASE-NAME> runner-installtion`
+1. Create namespace `kubectl create ns <NAMESPACE>`
+
+1. Run helm installation: `helm install --namespace <NAMESPACE> --timeout 1500s <RELEASE-NAME> .`
 
 ## values.yaml parameters - all fields are MANDATORY
 |                      |Description                                 |Default                 |
