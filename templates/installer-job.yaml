@@ -1,12 +1,10 @@
-{{- if or .Release.IsUpgrade .Release.IsInstall }}
-{{- $secretValues := ( .Files.Get "secret-values.yaml" | fromYaml ) }}
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ .Release.Name }}-installation
   annotations:
-    "helm.sh/hook": post-install
-    "helm.sh/hook-delete-policy": before-hook-creation
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: before-hook-creation
 spec:
   template:
     spec:
@@ -18,14 +16,12 @@ spec:
         command:
         - /usr/local/bin/installer.sh
         env:
-          - name: CODEFRESH_TOKEN
           {{- if .Values.codefreshTokenSecret }}
+          - name: CODEFRESH_TOKEN
             valueFrom:
               secretKeyRef:
                 name: {{ required "Require a secret name that contains the codefresh token" .Values.codefreshTokenSecret.name }}
                 key: {{ required "Require a secret key that contains the codefresh token" .Values.codefreshTokenSecret.key }}
-          {{- else }}
-            value: {{ required "codefresh token is missing " ( coalesce .Values.Token $secretValues.Token ) }}
           {{- end }}
           {{- if .Values.env }}
           {{- range $key, $value := .Values.env }}
@@ -54,4 +50,3 @@ spec:
       {{- end }}
 
   backoffLimit: 1
-{{- end }}

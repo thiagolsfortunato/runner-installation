@@ -3,5 +3,8 @@ Codefresh Runner installed - see logs of {{ .Release.Name }}-installer job
 {{- end }}
 
 {{- if .Release.IsUpgrade }}
-Currently upgrade is not supported
+WARNING: Currently upgrade is not supported. As a workaround, you can recreate helm release:
+helm uninstall {{ .Release.Name }} -n {{ .Release.Namespace }}
+
+helm install -n {{ .Release.Namespace }} [ helm parameters ] . 
 {{- end }}
