@@ -55,10 +55,10 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "codefresh-runner.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "codefresh-runner.fullname" .) .Values.serviceAccount.name }}
+{{- if .Values.installer.serviceAccount.create -}}
+    {{ default (include "codefresh-runner.fullname" .) .Values.installer.serviceAccount.name }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
+    {{ default "default" .Values.installer.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
 
@@ -67,5 +67,5 @@ Create the name of the service account to use
 Create the names of the namespace to use
 */}}
 {{- define "codefresh-runner.namespace" -}}
-{{ default .Release.Namespace .Values.env.codefreshKubeNamespace }}
+{{ .Release.Namespace }}
 {{- end -}}

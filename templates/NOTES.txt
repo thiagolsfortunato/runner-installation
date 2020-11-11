@@ -1,0 +1,7 @@
+{{- if .Release.IsInstall }}
+Codefresh Runner installed - see logs of {{ .Release.Name }}-installer job
+{{- end }}
+
+{{- if .Release.IsUpgrade }}
+Currently upgrade is not supported
+{{- end }}

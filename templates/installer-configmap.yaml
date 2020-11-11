@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-installer
+data:
+  installer.sh: |-
+{{ .Files.Get "files/installer.sh" | indent 4 }}
+  runner-values.yaml: |-
+{{ include "runner_values" . | indent 4}} 
