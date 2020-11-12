@@ -1,0 +1,13 @@
+{{- if .Release.IsInstall }}
+Codefresh Runner is being installed - see logs of {{ .Release.Name }}-installer-* pod
+{{- end }}
+
+
+{{- if .Release.IsUpgrade }}
+
+To Upgrade or reconfigure Codefresh runner exec into {{ .Release.Name }}-installer-* pod and perform any administration command
+We have mounted updated /etc/codefresh/runner-values.yaml to the pod
+
+kubectl exec -it $(kubectl get pod -l app=cf-installer -o name) bash
+
+{{- end }}
