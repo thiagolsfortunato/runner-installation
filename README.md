@@ -26,7 +26,37 @@ codefreshTokenSecret:
   key: token
 ```
 
-- Run helm installation: `helm install --namespace <NAMESPACE> --timeout 1500s <RELEASE-NAME> .`
+- Run helm installation: 
+```
+helm install --namespace <NAMESPACE> --timeout 1500s <RELEASE-NAME> .
+```
+It performs runner installation in <release-name>-installer pod labels `app=cf-installer`
+
+## Upgrades and Administration
+Exec into pod <release-name>-installer to perform any codefresh-cli administrative command
+For example:
+```
+kubectl get pods -l app=cf-installer
+NAME                        READY   STATUS    RESTARTS   AGE
+cf-runner-installer-h5ebz   1/1     Running   0          9m9s
+````
+
+```
+kubectl exec -it cf-runner-installer-h5ebz -- bash
+```
+or
+```
+kubectl exec -it $(kubectl get pod -l app=cf-installer -o name) -- bash
+```
+
+You can run, for example
+```
+codefresh runner upgrade --agent-name <CF_AGENT_NAME>
+```
+
+runner-values is mounted to `/etc/codefresh/runner-values.yaml`
+
+
 
 ## installer parameters in values.yaml
 |                            |Description                                     |Default                 |
