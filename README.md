@@ -3,9 +3,6 @@
 This helm chart will install Codefresh runner into your Kubernetes cluster. 
 For additional information regarding "Codefresh Runner" look here: [https://codefresh.io/docs/docs/administration/codefresh-runner/](https://codefresh.io/docs/docs/administration/codefresh-runner/)
 
-
-This helm chart support both Helm2 and Helm3.
-
 ## Prerequisite
 1. If you are working on air-gapped environment (without internet access), make sure to push the image "codefresh/cli" into your local registry before proceeding with the installation, And set `installer.image` to your local repository.
 
