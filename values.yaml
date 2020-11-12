@@ -1,3 +1,20 @@
+########################################################
+###                    Installer Values              ###
+########################################################
+installer:
+  image: codefresh/cli
+  imagePullPolicy: "Always"
+  imagePullSecrets: []
+
+  serviceAccount:
+    create: true
+    # name: 
+    annotations: {}
+  env: {}
+
+########################################################
+###                    Codefresh Runner Values       ###
+########################################################
 # See https://github.com/codefresh-io/venona/tree/release-1.0/venonactl#install-using---values-valuesyaml
 # 
 ##############################################
@@ -261,16 +278,3 @@ Token:
 #   FirebaseHost: firebase.io # (optional) We will check connectivity to this URL when we run our acceptance tests.
 
 
-########################################################
-###                    Installer Values              ###
-########################################################
-installer:
-  image: codefresh/cli
-  imagePullPolicy: "Always"
-  imagePullSecrets: []
-
-  serviceAccount:
-    create: true
-    # name: 
-    annotations: {}
-  env: {}
