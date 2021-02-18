@@ -44,7 +44,7 @@ Token:
 ###          Kubernetes Context            ###
 ###                                        ###
 ##############################################
-### ConfigPath --kube-config-path $KUBECONFIG: kubeconfig path
+### ConfigPath: --kube-config-path $KUBECONFIG: kubeconfig path
 # ConfigPath: # default is $(HOME)/.kube/config
 
 ### Context: --context $KUBE_CONTEXT: which kubernetes context to use
@@ -67,8 +67,16 @@ Token:
 ### default is: runner
 # RuntimeServiceAccount: runner
 
+### KubernetesHost: --kube-host: used when attaching a runtime to a runner to override the
+### apiserver address that the runner will use to create resources on the runtime,
+### by default we use the host from your kubeconfig.
+# KubernetesHost: https://kubernetes.default.svc.cluster.local
+
 ### SkipClusterTest: only set to true if you want to skip the acceptance tests during the installation
 # SkipClusterTest: true
+
+### SkipClusterTest: if set to true, cluster integration will not be created in Codefresh
+# SkipClusterIntegration: false
 
 ### ClusterId --clusterId: used when installing the monitor component
 ### this is the name of the cluster integration in codefresh
@@ -150,7 +158,8 @@ Token:
 #   AvailabilityZone: 
 #   GoogleServiceAccount: 
 #   AwsAccessKeyId: 
-#   AwsSecretAccessKey: 
+#   AwsSecretAccessKey:
+#   Encrypted:  # encrypt volume, default is false
 #   VolumeProvisioner:
 #     Image: codefresh/dind-volume-provisioner:v23
 #     NodeSelector: 
@@ -199,6 +208,7 @@ Token:
 #   AvailabilityZone: us-east-1d
 #   AwsAccessKeyId: ABCDF
 #   AwsSecretAccessKey: ZYXWV
+#   Encrypted:  # encrypt volume, default is false
 #   VolumeProvisioner: 
 #     NodeSelector: kubernetes.io/role=master
 # NodeSelector: failure-domain.beta.kubernetes.io/zone=us-east-1d
@@ -267,6 +277,25 @@ Token:
 #   ServiceAccount: # will be used by the engine and dind pods
 #     Annotations:
 #       foo: bar
+#   AdditionalEnvVars:  # will be set on engine and dind pods
+#     SOME_VAR: SOME_VALUE
+#   resources: # dind pod resources
+#     limits:
+#       cpu: 500m
+#       memory: 1200Mi
+#     requests:
+#       cpu: 200m
+#       memory: 500Mi
+#   userVolumeMounts: # will be set for dind pod and will be injcted for each container - https://codefresh.io/docs/docs/administration/codefresh-runner/#custom-volume-mounts
+#     my-test:
+#       name: test
+#       mountPath: /etc/ssl/cert
+#       readOnly: true
+#   userVolumes: # will be set for dind pod and will be injcted for each container - https://codefresh.io/docs/docs/administration/codefresh-runner/#custom-volume-mounts
+#     test:
+#       name: test
+#       secret: 
+#         secretName: test-secret
 
 
 ########################################################
@@ -276,5 +305,3 @@ Token:
 ########################################################
 # Logging:
 #   FirebaseHost: firebase.io # (optional) We will check connectivity to this URL when we run our acceptance tests.
-
-
