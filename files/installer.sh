@@ -36,7 +36,7 @@ fi
 
 if [[ -n "${ACTION}" ]]; then
   # COMMAND="codefresh runner init -y --values ${VALUES_FILE} --set Token=${CODEFRESH_TOKEN}"
-  COMMAND="codefresh runner $ACTION -y --values ${VALUES_FILE} $ACTION_PARAMETERS"
+  COMMAND="codefresh runner $ACTION --force --values ${VALUES_FILE} $ACTION_PARAMETERS"
   echo "Executing $COMMAND ..."
   eval $COMMAND $CODEFRESH_TOKEN_PARAM
 
