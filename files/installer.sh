@@ -34,21 +34,19 @@ if [[ -n "${CODEFRESH_TOKEN}" ]]; then
    echo "CODEFRESH_TOKEN env is set"
 fi
 
-if [[ -n "${ACTION}" ]]; then
-  # COMMAND="codefresh runner init -y --values ${VALUES_FILE} --set Token=${CODEFRESH_TOKEN}"
-  COMMAND="codefresh runner $ACTION --force --values ${VALUES_FILE} $ACTION_PARAMETERS"
-  echo "Executing $COMMAND ..."
-  eval $COMMAND $CODEFRESH_TOKEN_PARAM
-
-fi
-
-echo "
-You can exec with bash to this pod to perform codefresh cli commands:
-kubectl exec -it $(hostname) -- bash
-"
-
-tail -f /dev/null
-
-
-
-
+case "${ACTION}" in
+  delete)
+    runtime_context=$(yq -r .Context ${VALUES_FILE})
+    runtime_namespace=$(yq -r .Namespace ${VALUES_FILE})
+    runtime_name="${runtime_context}_${runtime_namespace}"
+    codefresh runner $ACTION --force --values ${VALUES_FILE} --name ${runtime_name} --kube-namespace ${runtime_namespace} 
+    ;;
+  *)
+    if [[ -n "${ACTION}" ]]; then
+      # COMMAND="codefresh runner init -y --values ${VALUES_FILE} --set Token=${CODEFRESH_TOKEN}"
+      COMMAND="codefresh runner $ACTION --force --values ${VALUES_FILE} $ACTION_PARAMETERS"
+      echo "Executing $COMMAND ..."
+      eval $COMMAND $CODEFRESH_TOKEN_PARAM
+    fi
+    ;;
+esac
