@@ -47,6 +47,7 @@ case "${ACTION}" in
       COMMAND="codefresh runner $ACTION --force --values ${VALUES_FILE} $ACTION_PARAMETERS"
       echo "Executing $COMMAND ..."
       eval $COMMAND $CODEFRESH_TOKEN_PARAM
+      tail -f /dev/null
     fi
     ;;
 esac
