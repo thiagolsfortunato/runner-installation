@@ -41,8 +41,7 @@ spec:
     - name: installer-cm
       configMap:
         name: {{ .Release.Name }}-installer
-        defaultMode: 0777               
-  restartPolicy: Never
+        defaultMode: 0777
   {{- if .Values.installer.imagePullSecrets }}
   imagePullSecrets:
   {{- range $sec := .Values.installer.imagePullSecrets }}
